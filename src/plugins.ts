@@ -9,6 +9,10 @@ export const extractImports: AcceptedPlugin = ExtractImports;
 export const scope: AcceptedPlugin = Scope;
 export const values: AcceptedPlugin = Values;
 
+export type Source = string | {
+    toString(): string;
+};
+
 export const defaultPlugins = [
     values,
     localByDefault,

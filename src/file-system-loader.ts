@@ -4,6 +4,7 @@ import { AcceptedPlugin } from 'postcss';
 
 import CoreLoader, { CoreResult } from './core-loader';
 import { ExportTokens } from './parser';
+import { Source } from './plugins';
 
 export default class FileSystemLoader {
   static defaultPlugins = CoreLoader.defaultPlugins;
@@ -41,8 +42,8 @@ export default class FileSystemLoader {
     }
   };
 
-  load(file: string, relativeTo?: string, depTrace?: string): Promise<CoreResult> {
-    return this.pathFetcher(file, relativeTo, depTrace)
+  load(sourceString: Source, relativeTo?: string, depTrace?: string): Promise<CoreResult> {
+    return this.pathFetcher(sourceString.toString(), relativeTo, depTrace)
       .then(exportTokens => {
         let written = new Set(),
           injectableSources: string[] = [];

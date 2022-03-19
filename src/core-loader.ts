@@ -1,7 +1,7 @@
 import postcss, { AcceptedPlugin } from 'postcss'
 
 import Parser, { PathFetcher, ExportTokens } from './parser';
-import { defaultPlugins, values, localByDefault, extractImports, scope } from './plugins';
+import { defaultPlugins, values, localByDefault, extractImports, scope, Source } from './plugins';
 
 export interface CoreResult {
   injectableSource: string,
@@ -23,7 +23,7 @@ export default class CoreLoader {
   }
 
   load(
-    sourceString: string,
+    sourceString: Source,
     sourcePath: string = '',
     trace: string = '',
     pathFetcher: PathFetcher = CoreLoader.defaultPathFetcher
